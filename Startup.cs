@@ -23,14 +23,13 @@ namespace Servicos_InjecaoDependencia
             app.UseRouting();
 
             app.UseMiddleware<MiddlewareConsultaCep>();
-            IFormatadorEndereco formatador = new EnderecoTextual();
 
             app.Use(async (context, next) =>
             {
 
                 if (context.Request.Path == "/mw/lambda")
                 {
-                    await formatador.Formatar(context, await EndpointConsultaCep.ConsultaCep("01001000"));
+                    await EnderecoTextual.Singleton.Formatar(context, await EndpointConsultaCep.ConsultaCep("01001000"));
                 }
                 else
                 {
@@ -41,7 +40,7 @@ namespace Servicos_InjecaoDependencia
                     endpoints.MapGet("/ep/classe/{cep:regex(^\\d{{8}}$)?}",EndpointConsultaCep.Endpoint);
                     endpoints.MapGet("/ep/lambda/{cep:regex(^\\d{{8}}$)?}",async context=>{
                         string cep= context.Request.RouteValues["cep"] as string ?? "01001000";
-                        await formatador.Formatar(context, await EndpointConsultaCep.ConsultaCep(cep));
+                        await EnderecoTextual.Singleton.Formatar(context, await EndpointConsultaCep.ConsultaCep(cep));
                     });
                 });
             app.Run((context)=>{

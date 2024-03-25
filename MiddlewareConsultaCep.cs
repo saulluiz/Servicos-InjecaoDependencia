@@ -21,24 +21,14 @@ public class MiddlewareConsultaCep
     public async Task Invoke(HttpContext context)
     {
 
-        if(context.Request.Path.StartsWithSegments("/mw/classe")){
+        if (context.Request.Path.StartsWithSegments("/mw/classe"))
+        {
 
-        string[] segmentos = context.Request.Path.ToString().Split('/',StringSplitOptions.RemoveEmptyEntries);
-        string cep = segmentos.Length >2 ? segmentos[2]: "01001000";
+            string[] segmentos = context.Request.Path.ToString().Split('/', StringSplitOptions.RemoveEmptyEntries);
+            string cep = segmentos.Length > 2 ? segmentos[2] : "01001000";
+            var objetoCep = await ConsultaCep(cep);
+            await EnderecoTextual.Singleton.Formatar(context, objetoCep);
 
-
-
-
-        var objetoCep = await ConsultaCep(cep);
-        context.Response.ContentType = "text/html; charset=utf-8";
-
-        StringBuilder html = new StringBuilder();
-        html.Append($"<h3>CEP {objetoCep.CEP}</p>");
-        html.Append($"<p>Logradouro: {objetoCep.Logradouro}</p>");
-        html.Append($"<p>Bairro: {objetoCep.Bairro}</p>");
-        html.Append($"<p>Cidade/UF: {objetoCep.Localidade}/{objetoCep.Estado}</p>");
-
-        await context.Response.WriteAsync(html.ToString());
         }
 
 

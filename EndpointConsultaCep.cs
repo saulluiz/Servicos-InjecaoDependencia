@@ -12,38 +12,24 @@ using Newtonsoft.Json;
 
 public class EndpointConsultaCep
 {
-  
+
 
     public static async Task Endpoint(HttpContext context)
     {
-
-
         string cep = context.Request.RouteValues["cep"] as string ?? "32676554";
         Console.WriteLine(cep);
 
-
-
-
         var objetoCep = await ConsultaCep(cep);
-        if(objetoCep ==null){
-            context.Response.StatusCode=StatusCodes.Status404NotFound;
+        if (objetoCep == null)
+        {
+            context.Response.StatusCode = StatusCodes.Status404NotFound;
         }
-        else{
+        else
+        {
 
-        context.Response.ContentType = "text/html; charset=utf-8";
+            await EnderecoTextual.Singleton.Formatar(context, objetoCep);
 
-        StringBuilder html = new StringBuilder();
-        html.Append($"<h3>CEP {objetoCep.CEP}</p>");
-        html.Append($"<p>Logradouro: {objetoCep.Logradouro}</p>");
-        html.Append($"<p>Bairro: {objetoCep.Bairro}</p>");
-        html.Append($"<p>Cidade/UF: {objetoCep.Localidade}/{objetoCep.Estado}</p>");
-        string localidade = HttpUtility.UrlEncode($"{objetoCep.Localidade}-{objetoCep.Estado}");
-        LinkGenerator geradorLink =  context.RequestServices.GetService<LinkGenerator>();
-        string url = geradorLink.GetPathByRouteValues(context,"consultapop",new {local=localidade});
-
-        await context.Response.WriteAsync(html.ToString());
-
-        } 
+        }
 
 
     }

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Http;
 public class EnderecoTextual :IFormatadorEndereco
 {
     private int contadorDeUso=0;
+    private static EnderecoTextual instanciaCompartilhada;
+    
     public async Task Formatar(HttpContext context,IEndereco endereco){
         StringBuilder conteudo = new StringBuilder();
          conteudo.Append($"CEP:{endereco.CEP}\n");
@@ -17,4 +19,13 @@ public class EnderecoTextual :IFormatadorEndereco
         await context.Response.WriteAsync(conteudo.ToString());
         
     }
+    public static EnderecoTextual Singleton{
+        get{
+            if(instanciaCompartilhada==null){
+                instanciaCompartilhada=new EnderecoTextual();
+            }
+            return instanciaCompartilhada;
+        }
+    }
+    
 }
