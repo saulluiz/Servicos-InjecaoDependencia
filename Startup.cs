@@ -29,7 +29,7 @@ namespace Servicos_InjecaoDependencia
 
                 if (context.Request.Path == "/mw/lambda")
                 {
-                    await EnderecoTextual.Singleton.Formatar(context, await EndpointConsultaCep.ConsultaCep("01001000"));
+                    await TypeBroker.FormatadorEndereco.Formatar(context, await EndpointConsultaCep.ConsultaCep("01001000"));
                 }
                 else
                 {
@@ -40,7 +40,7 @@ namespace Servicos_InjecaoDependencia
                     endpoints.MapGet("/ep/classe/{cep:regex(^\\d{{8}}$)?}",EndpointConsultaCep.Endpoint);
                     endpoints.MapGet("/ep/lambda/{cep:regex(^\\d{{8}}$)?}",async context=>{
                         string cep= context.Request.RouteValues["cep"] as string ?? "01001000";
-                        await EnderecoTextual.Singleton.Formatar(context, await EndpointConsultaCep.ConsultaCep(cep));
+                        await TypeBroker.FormatadorEndereco.Formatar(context, await EndpointConsultaCep.ConsultaCep(cep));
                     });
                 });
             app.Run((context)=>{

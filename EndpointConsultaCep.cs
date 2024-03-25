@@ -27,7 +27,7 @@ public class EndpointConsultaCep
         else
         {
 
-            await EnderecoTextual.Singleton.Formatar(context, objetoCep);
+            await TypeBroker.FormatadorEndereco.Formatar(context, objetoCep);
 
         }
 

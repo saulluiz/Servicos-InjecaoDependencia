@@ -27,7 +27,7 @@ public class MiddlewareConsultaCep
             string[] segmentos = context.Request.Path.ToString().Split('/', StringSplitOptions.RemoveEmptyEntries);
             string cep = segmentos.Length > 2 ? segmentos[2] : "01001000";
             var objetoCep = await ConsultaCep(cep);
-            await EnderecoTextual.Singleton.Formatar(context, objetoCep);
+            await TypeBroker.FormatadorEndereco.Formatar(context, objetoCep);
 
         }
 
