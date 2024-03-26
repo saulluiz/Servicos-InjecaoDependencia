@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 public class MiddlewareConsultaCep
 {
     private readonly RequestDelegate next; //guarda a referencia do proximo middleware
+    
     public MiddlewareConsultaCep(RequestDelegate nextMiddleware)
     {
         next = nextMiddleware;
@@ -18,7 +19,7 @@ public class MiddlewareConsultaCep
     {
 
     }
-    public async Task Invoke(HttpContext context)
+    public async Task Invoke(HttpContext context,IFormatadorEndereco formatador)
     {
 
         if (context.Request.Path.StartsWithSegments("/mw/classe"))
@@ -27,7 +28,7 @@ public class MiddlewareConsultaCep
             string[] segmentos = context.Request.Path.ToString().Split('/', StringSplitOptions.RemoveEmptyEntries);
             string cep = segmentos.Length > 2 ? segmentos[2] : "01001000";
             var objetoCep = await ConsultaCep(cep);
-            await TypeBroker.FormatadorEndereco.Formatar(context, objetoCep);
+            await formatador.Formatar(context, objetoCep);
 
         }
 

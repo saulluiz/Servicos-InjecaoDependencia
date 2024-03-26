@@ -1,5 +1,5 @@
 public class TypeBroker
 {
-    private static IFormatadorEndereco instanciaCompartilhada=new EnderecoTextual();
+    private static IFormatadorEndereco instanciaCompartilhada=new EnderecoHtml();
     public static IFormatadorEndereco FormatadorEndereco => instanciaCompartilhada;
 }

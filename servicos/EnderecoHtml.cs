@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 public class EnderecoHtml : IFormatadorEndereco
 {
     private int contadorDeUso = 0;
+    private Guid guid =Guid.NewGuid();
 
     public async Task Formatar(HttpContext context, IEndereco endereco)
     {
@@ -15,6 +17,7 @@ public class EnderecoHtml : IFormatadorEndereco
         conteudo.Append($"<p>Bairro: {endereco.Bairro}</p>");
         conteudo.Append($"<p>Cidade/UF: {endereco.Localidade}/{endereco.Estado}</p>");
         conteudo.Append($"<small>Formatador usado {++contadorDeUso} vez(es).</small>");
+        conteudo.Append($"<br><small>GUID {guid}</small>");
 
         context.Response.ContentType = "text/html; charset=utf-8";
         await context.Response.WriteAsync(conteudo.ToString());

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gq660HMiwakLVlfp3/DRrqZ2CFssNvovaLmQJwxiaye2/y3lQxlMUFPJVtoGPXbP+3WVPgi/tEtiMd0MGI9SjA==",
+  "dgSpecHash": "u6KRv6oZLJNjKkNZG2e1JqRNdI5xoxM1+xiZqioJhn4m5NRm+K6OF4dDx3OBfp8QxPZbH3PsQPAILeeIuIS61Q==",
   "success": true,
-  "projectFilePath": "c:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj",
+  "projectFilePath": "C:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\saulo\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],

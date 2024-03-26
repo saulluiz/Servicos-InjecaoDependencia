@@ -11,10 +11,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
 public class EndpointConsultaCep
-{
+{   
+            public EndpointConsultaCep(){
+               
+            }
 
 
-    public static async Task Endpoint(HttpContext context)
+    public  async Task Endpoint(HttpContext context,IFormatadorEndereco formatador)
     {
         string cep = context.Request.RouteValues["cep"] as string ?? "32676554";
         Console.WriteLine(cep);
@@ -26,14 +29,13 @@ public class EndpointConsultaCep
         }
         else
         {
-
-            await TypeBroker.FormatadorEndereco.Formatar(context, objetoCep);
+            await formatador.Formatar(context, objetoCep);
 
         }
 
 
     }
-    public static async Task<jsonCep> ConsultaCep(string cep)
+    public  static async Task<jsonCep> ConsultaCep(string cep)
     {
         var url = $"https://viacep.com.br/ws/{cep}/json";
         var cliente = new HttpClient();

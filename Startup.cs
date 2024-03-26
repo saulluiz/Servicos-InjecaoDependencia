@@ -15,9 +15,12 @@ namespace Servicos_InjecaoDependencia
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IFormatadorEndereco,EnderecoHtml>();
+            
+
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IFormatadorEndereco formatador)
         {
             app.UseDeveloperExceptionPage();
             app.UseRouting();
@@ -29,7 +32,7 @@ namespace Servicos_InjecaoDependencia
 
                 if (context.Request.Path == "/mw/lambda")
                 {
-                    await TypeBroker.FormatadorEndereco.Formatar(context, await EndpointConsultaCep.ConsultaCep("01001000"));
+                    await formatador.Formatar(context, await EndpointConsultaCep.ConsultaCep("01001000"));
                 }
                 else
                 {
@@ -37,10 +40,10 @@ namespace Servicos_InjecaoDependencia
                 }
             });
                 app.UseEndpoints(endpoints =>{
-                    endpoints.MapGet("/ep/classe/{cep:regex(^\\d{{8}}$)?}",EndpointConsultaCep.Endpoint);
+                    endpoints.MapEndpoint<EndpointConsultaCep>("/ep/classe/{cep:regex(^\\d{{8}}$)?}");
                     endpoints.MapGet("/ep/lambda/{cep:regex(^\\d{{8}}$)?}",async context=>{
                         string cep= context.Request.RouteValues["cep"] as string ?? "01001000";
-                        await TypeBroker.FormatadorEndereco.Formatar(context, await EndpointConsultaCep.ConsultaCep(cep));
+                        await formatador.Formatar(context, await EndpointConsultaCep.ConsultaCep(cep));
                     });
                 });
             app.Run((context)=>{

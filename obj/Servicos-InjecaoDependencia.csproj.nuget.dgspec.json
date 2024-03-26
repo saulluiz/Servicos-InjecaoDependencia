@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj": {}
+    "C:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj": {}
   },
   "projects": {
-    "c:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj": {
+    "C:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj",
+        "projectUniqueName": "C:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj",
         "projectName": "Servicos-InjecaoDependencia",
-        "projectPath": "c:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj",
+        "projectPath": "C:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\Servicos-InjecaoDependencia.csproj",
         "packagesPath": "C:\\Users\\saulo\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\obj\\",
+        "outputPath": "C:\\Users\\saulo\\OneDrive\\Área de Trabalho\\DEV\\Asp.net\\Servicos-InjecaoDependencia\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
